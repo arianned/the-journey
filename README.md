@@ -11,3 +11,5 @@ And what this is not! For the first time in my life I'm really seriously going t
 > - if you build something, document it and test it as appropriate
 
 So that's what this is about. I'm going to take notes, blog and build tiny things to test my knowledge. I'll have a little blog thing, notes on books I read and folders for stuff I build. This may evolve over time, but right now, that's my plan! Nothing ground-breaking, or possibly very interesting. More just a way for me to chart my progress.
+
+[link to tute][(<https://forum.freecodecamp.com/t/computer-guide-computer-science-and-web-development-comprehensive-path/64470>] ]
