@@ -37,3 +37,7 @@ Incidentally, if you don’t have the best Internet access, you’re welcome to 
 Once finished with your project, click **See project page** in Scratch’s top-right corner. Ensure your project has a title (in Scratch’s top-left corner), some instructions (in Scratch’s top-right corner), and some notes and/or credits (in Scratch’s bottom-right corner). Then click **Share** in Scratch’s top-right corner so that others can see your project. Finally, take note of the URL in your browser’s address bar. That’s your project’s URL on MIT’s website, and you’ll need to know it later.
 
 Oh, and if you’d like to exhibit your project in CS50x 2017’s studio, head to [https://scratch.mit.edu/studios/3678335/](https://scratch.mit.edu/studios/3678335/), then click **Add projects**, and paste in your own project’s URL
+
+## Helpful Details
+
+[Different Game Ideas](http://inventwithpython.com/blog/2012/02/20/i-need-practice-programming-49-ideas-for-game-clones-to-code/)
