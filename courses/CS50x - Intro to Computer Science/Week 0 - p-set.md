@@ -41,3 +41,7 @@ Oh, and if you’d like to exhibit your project in CS50x 2017’s studio, head t
 ## Helpful Details
 
 [Different Game Ideas](http://inventwithpython.com/blog/2012/02/20/i-need-practice-programming-49-ideas-for-game-clones-to-code/)
+
+## My Game
+
+Can be found here: [CS50x - p set 0 - Yoshi Egg Catch](https://scratch.mit.edu/projects/163641177/)
