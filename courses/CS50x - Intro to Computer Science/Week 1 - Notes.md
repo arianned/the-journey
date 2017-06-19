@@ -448,3 +448,80 @@ The value after the `:` is what x's value will be if the expression is `false`.
 
 ### Loops
 
+Loops allow you to execute lines of code repeatedly, saving you from needing to to copy and paste, or otherwise repeat lines of code.
+
+Like Scratch, C provides a number of ways to implement loops. There's three major kinds.
+
+#### Forever Loop
+
+```
+while (true)
+{
+
+}
+```
+
+This is an _infinite loop_. The lines of code between the curly braces will execute repeatedly from top to bottom, until and unless we break out of it (with a `break;` statement) or otherwise kill our program.
+
+True is always true, so it'll always run. Kill it with `Ctrl+C`.
+
+We can also use things other than `true`.
+
+```
+while (boolean-expr)
+{
+
+}
+```
+
+This is similar to **repeat until** in Scratch. All lines of code between the curly braces will execute repeatedly , in order from top-to-bottom until the `boolean-expr` is `false`. In Scratch, the loop will keep executing _until_ it is `true`, but in C, the loop executes _until_ it is `false`. 
+
+#### Do While Loop
+
+```
+do
+{
+
+}
+while (boolean-expr);
+```
+
+This loop will execute all of the code between the curly braces once and then, if the `boolean-expr` evaluates to `true`, will go back and repeat that process until `boolean-expr` evaluates to `false`. 
+
+It is guaranteed to run **at least** one time.
+
+#### For Loop
+
+```
+for (int i = 0; i < 10; i++)
+{
+    
+}
+```
+
+The syntax is ugly, but `for` loops are used to repeat the body of a loop a specified number of times, in this example, 10.
+
+The process undertaken in a `for` loop is:
+- The counter variable(s) (here, `i`) is set
+- The Boolean expression is checked
+    - If it evaluates to `true`, the body of the loop executes
+    - If it evaluates to `false`, the body of the loop does not execute
+- The counter variable is incremented and then the Boolean expression is checked again, etc.
+
+Here's an example with stuff in it:
+
+```
+for (start; expr; increment)
+{
+    
+}
+```
+
+What's happening?
+
+- The statement(s) in `start` are executed
+- The `expr` is checked
+    - If it evaluates to `true`, the body of the loop executes
+    - If it evaluates to `false`, the body of the loop does not execute
+- The statement(s) in `increment` are executed and then the `expr` is checked again, etc.
+
