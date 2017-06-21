@@ -42,7 +42,7 @@ If we wanted to set i to zero in Scratch, we'd use a `set i to 0` block. In C, w
 int i = 0;
 ```
 
-Remember **Boolean Expressions8**? They're something that can be either true or false. In Scratch, we might ask whether `i < 50` to keep track of a score or something like that. In C?
+Remember **Boolean Expressions**? They're something that can be either true or false. In Scratch, we might ask whether `i < 50` to keep track of a score or something like that. In C?
 
 ```
 i < 50
@@ -102,7 +102,7 @@ int main (void)
 
 ## Compiling
 
-However once we've written this, to make it work, we have to take it and translate it into machine code. Back to **binary**. To save us having to put it into binary ourselves, we can use pre-designed programmes called **compilers**. **"Compiling"** simply means converting from source code to machine code.
+However, once we've written this, to make it work, we have to take it and translate it into machine code. Back to **binary**. To save us having to put it into binary ourselves, we can use pre-designed programmes called **compilers**. **"Compiling"** simply means converting from source code to machine code.
 
 Like last week, where we talked about inputs and outputs, and using an algorithm (black box) to solve the problem, in this case we're going to use algorithms in the compiler to convert the special keywords like `main` and `printf` to machine code.
 
@@ -112,7 +112,7 @@ So how do we get a compiler? We can download one, or we can use the CS50 IDE whi
 
 On the left you'll have an area to access your files, on the top right you'll write your code and on the bottom right you'll have your terminal window.
 
-The terminal, or CLI (command line interface) allows you to run commands like compile your code, to run your programs, or start your web server. 
+The terminal, or CLI (command line interface) allows you to run commands like compile your code, run your programs, or start your web server. 
 
 Any files you create should be saved with the ".c" file extension.
 
@@ -229,7 +229,7 @@ It's good practice to only declare variables when you need them.
 
 How do we use them? 
 
-Once you've declared a variable, it's no longer necessary to specify it's type. (If you do, it can have some unintended consequences!)
+Once you've declared a variable, it's no longer necessary to specify its type. (If you do, it can have some unintended consequences!)
 
 ```
 int number;                 // declaration
@@ -410,7 +410,7 @@ switch (x)
     case 3:
         printf("Three, ");
     case 2:
-        printf("Two!\n");
+        printf("Two, ");
     case 1:
         printf("One, ");
     default:
