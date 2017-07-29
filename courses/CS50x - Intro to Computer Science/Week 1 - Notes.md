@@ -89,7 +89,7 @@ Remember than in C, `0` will mean first.
 
 ## hello C
 
-In the same way that Scratch has the green flag that you click to initial programmes, C has its own equivalent special function, called **main**.
+In the same way that Scratch has the green flag that you click to initialise programmes, C has its own equivalent special function, called **main**.
 
 ```
 #include <stdio.h>
