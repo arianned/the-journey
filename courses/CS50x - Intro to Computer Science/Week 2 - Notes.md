@@ -453,3 +453,418 @@ And this will show you the value that was returned.
 
 ## Shorts
 
+### Functions
+
+So far, everything we've written has been inside of `main`. This is fine when we're writing relatively few lines of code, but when there's thousands or tens of thousands of lines of code, it's not a good idea to keep everything inside of `main`.
+
+C and nearly all other languages, allow us to write **functions**, sometimes also known as **procedures**, **methods** or **subroutines**.
+
+#### What is a function?
+
+A function is a black box with a set of 0+ inputs and 1 output.
+
+Why call it a black box? If we aren't writing the functions ourselves, we don't need to know the underlying implementation.
+
+When you create a function, make sure you use a clear, relatively obvious name and that it's well docmented.
+
+Why use functions?
+
+1. Organisation - functions help us break up a complicated problem into more manageable subparts
+2. Simplification - smaller components tend to be easier to design, implement and debug
+3. Reusability - functions can be recyled - you only need to write them once but can use them as often as you need
+
+#### Function Declarations
+
+- The first step to creating a function is to declare it. This gives the compiler a heads-up that a user-written function appears in the code.
+- Function declarations should always go atop your code, before you begin writing `main()`
+- There is a standard form that every declaration follows:
+```
+return-type name(argument-list);
+```
+- The `return-type` is what kind of variable the function will output
+- The `name` is what you want to call your function
+- The `argument-list` is the comma-separated set of inputs to your function, each of which has a type and a name
+
+For example:
+```
+int add_two_ints(int a, int b);
+```
+- This is a function to add two integers
+- The output of adding two integers will be an integer as well
+- Considering it's function, it's been given an appropriate name
+- There are two inputs to this function and we need to give a name to each of them for the purposes of the function. There's nothing important about these inputs (as far as we know), so it's fine to give them simple names
+
+Here's another example:
+```
+float multiply_floats(float x, float y);
+```
+- This is a function to multiply two floating point numbers
+- The product of two floating point numbers would also be a float
+
+#### Function Definitions
+
+Now we've declared our function, we have to write it.
+
+A function definition looks very similar to a function declaration, except with a small change.
+
+```
+// function declaration - note the semicolon
+float mult_two_reals(float x, float y);
+
+// function definition
+float mult_two_reals(float x, float y)
+{
+    float product = x * y;
+    return product;
+}
+```
+
+Here's a slightly simpler version of the above:
+
+```
+// function declaration - note the semicolon
+float mult_two_reals(float x, float y);
+
+// function definition (this one is slightly simpler than the one above)
+float mult_two_reals(float x, float y)
+{
+    return x * y;
+}
+```
+- `return` is the output of the black box - in this case the product of our sum
+
+Here's how we would define one of the other functions we declared a moment ago:
+
+```
+int add_two_ints(int a, int b);
+
+int add_two_ints(int a, int b)
+{
+    int sum = a + b;
+    return sum;
+}
+
+```
+
+#### Function Calls
+
+Now to use our functions!
+
+To call a function, pass it appropriate arguments and assign its return value to something of the correct type.
+
+Here's an example of how we would call a function:
+
+```
+// includes
+#include <stdio.h>
+#include <cs50.h>
+
+// declare functions
+int add_two_ints(int a, int b);
+
+int main(void)
+{
+    // ask user for input
+    printf("Give me an integer: ");
+    int x = get_int();
+    printf("Give me another integer ");
+    int y = get_int();
+
+    // add the two numbers together via a function call
+    int z = add_two_ints(x,y);
+
+    // output the results
+    printf("The sum of %i and %i is %i!\n", x, y, z);
+}
+
+
+int add_two_ints(int a, int b)
+{
+    int sum = a + b;
+    return sum;
+}
+```
+
+#### Function Miscellany
+
+- Recall that functions can sometimes take no inputs. In that case we declare the function as having a `void` argument list
+- Recall that functions sometimes do not have an output - in which case we declare the function as having a `void` return type
+
+#### Practice Problem
+
+- Declare and write a function called `valid_triangle` that takes three real numbers representing the lengths of three sides of a triangle as its arguments, and outputs either `true` or `false` depending on whether those three lengths are capable of making a triangle
+- Note the following about triangles:
+    - A triangle may only have sides with positive length
+    - The sum of the lengths of any two sides of the triangle must be greater than the length of the third side
+
+```
+//include
+#include <stdio.h>
+#include <cs50.h>
+
+// declare function
+string valid_triangle(float a, float b, float c);
+
+int main(void)
+{
+    // ask the user for input
+    printf("Give me a number: ");
+    float a = get_float();
+    printf("Give me another number: ");
+    float b = get_float();
+    printf("Give me a final number: ");
+    float c = get_float();
+
+    // check whether the numbers can be make a valid triangle via a function call
+    string s = valid_triangle(a, b, c);
+
+    // output the result
+    printf("Can the numbers make a triangle? %s\n", s);
+}
+
+// define function
+string valid_triangle(float a, float b, float c)
+{
+    // check for all positive sides
+    if (a <= 0 || b <= 0 || c <= 0)
+    {
+        return "false";
+    }
+
+    // check that the sum of two sides is greater than the third
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a))
+    {
+        return "false";
+    }
+    
+    // if both test are passed, we can confirm it's true!
+    return "true";
+ }
+```
+
+### Variables & Scope
+
+As we start working with functions, something which is really important to understand is the concept of **variable scope**. 
+
+**Scope** is the characteristic of a variable that defines from which functions that variable may be accessed.
+- Local variables can only be accessed within the functions in which they are created
+- Global variables can be accessed by any function in the program
+
+You must be careful when working with global variables. They're flexible and allow you to pass information around so that every function can use it. However, this can also be dangerous as one function can change the value of a variable before you expect it to be changed.
+
+#### Why Does This Distinction Matter?
+
+- In general, _local_ variables in C are **passed by value** in function calls
+- When a variable is **passed by value**, the _callee_ receives a copy of the passed variable, not the variable itself
+- That means the variable in the _caller_ is left unchanged unless overwritten
+
+For example in the below code, `foo` is not changed at all:
+```
+int main(void)
+{
+    int foo = 4;
+    triple(foo);
+}
+int triple(int x)
+{
+    return x *= 3;
+}
+```
+
+However in this example, `foo` does get overwritten:
+```
+int main(void)
+{
+    int foo = 4;
+    foo = triple(foo);
+}
+int triple(int x)
+{
+    return x *= 3;
+}
+```
+If we asked `main` to print out the value of `foo`, it would now be 12. However in the first piece of code it would remain as 4.
+
+Variable scope can be an issue if the same variable name appears in multiple functions. This is generally ok if the variables exist in different scopes. 
+
+For example, in the below code, what would be printed out at the end of this program?
+```
+int increment(int x);
+
+int main(void)
+{
+    int x = 1;
+    int y;
+    y = increment(x);
+    printf("x is %i, y is %i\n", x, y);
+}
+
+int increment(int x)
+{
+    x++;
+    return x;
+}
+```
+`x is 1, y is 2`
+
+The reason this is confusing is that we have 2 variables called `x`. But each was local to its own function.
+
+### Arrays
+
+What if we want to work with lots of different variables, but we don't want loads of different names flying around the code?
+
+This is where **arrays** come in handy. We use arrays to hold values of the same data type at contiguous memory locations - think of it like a load of PO boxes at a post office.
+
+In C, the elements of an array are indexed starting from 0, not 1. If an array consists of `n` elements, the first element is located at index `0`. The last element is located at index `(n-1)`.
+
+C won't tell you if you've gone out of bounds for your array. If you have 50 elements and you try and access `-3` or `59`, it won't prevent you from trying to do so.
+
+#### Array Declarations
+
+What does an array declaration look like?
+```
+type name[size]
+```
+- The type is what kind of variable each element of the array will be
+- The name is what you want to call the array
+- The size is how many elements you would like your array to contain
+
+If you think of arrays in the same way as you do any other variable if the same data-type, all of the familiar operations make sense. All of the below operations would work:
+
+```
+// declared my array
+bool truthtable[10];
+
+// operation 1
+truthtable[2] = false;
+
+// operation 2
+if (truthtable[7] == true)
+{
+    printf("TRUE\n");
+}
+
+// operation 3
+truthtable[9] = true;
+```
+
+When declaring and initialising an array simultaneously, there is a special syntax that you can use to fill up the array with its starting values.
+
+```
+// instantition syntax
+bool truthtable[3] = { false, true, true };
+
+// individual element syntax
+bool truthtable[3];
+truthtable[0] = false;
+truthtable[1] = true;
+truthtable[2] = true;
+```
+
+You can also iterate over all of the elements in an array by using a loop. How do you create an array of 100 integers where every element of the array is its index? We'd want to put 0 in the first element, 1 in the second and so on.
+
+```
+```
+
+You can tweak the instantiation syntax to not specify an array size. The compiler would automatically know to create 3 elements if you specified 3 elements after the equals sign. If you'd put 4, it would create 4:
+
+```
+// instantition syntax
+bool truthtable[] = { false, true, true, false };
+```
+
+#### Array Dimensions
+
+Arrays can also consist of more than a single dimension. You can have as many size specifiers as you wish:
+```
+bool battleship[10][10];
+```
+You can think of this as a 10x10 grid of cells. In the memory, it's just one 100-element one-dimensional array. Multi-dimensional arrays like this are great **abstractions** to help visualise game boards or other complex representations.
+
+#### Copying Arrays
+
+- We can treat individual elements of arrays as variables, but we cannot treat entire arrays themselves as variables
+- For example, we cannot assign one array to another using the assignment operator in C
+- Instead, we would need to use a loop to copy over the elements one at a time
+
+```
+// code which won't work
+int foo[5] = { 1, 2, 3, 4, 5 };
+int bar[5];
+
+bar = foo;
+
+// code which would work
+for (int j = 0; j < 5; j++)
+{
+    bar[j] = foo[j];
+}
+```
+
+#### Passed by Reference
+
+Most variable in C are **passed by value** in function calls - meaning that the function, the _callee_ gets a copy of the variable to work with - not the variable itself. 
+
+Arrays don't follow this rule. They are **passed by reference** - which means the _callee_ receives the **actual** array, not a copy of it. 
+
+We'll return later to why arrays have this special property.
+
+A final bit of code:
+```
+void set_array(int array[4]);
+void set_int(int x);
+
+int main(void)
+{
+    int a = 10;
+    int b[4] = { 0, 1, 2, 3 };
+    set_int = a;
+    set_array(b);
+    printf("%d %d\n", a b[0]);
+}
+
+void set_array(int array[4])
+{
+    array[0] = 22
+}
+
+void set_int(int x)
+{
+    x = 22;
+}
+```
+- `set_array` takes an array of 4 integers as its input
+- `set_int` takes a single integer as its input
+- Neither function has an output
+- We specify the single integer and array values (10 and 0, 1, 2, 3)
+- We then have a call to `set_int` and `set_array`
+- The answer is `10, 22`, as `set_int` received a copy of 10, and so `a` remained unchanged, but `set_array` received the actual array - so value `[0]` changed from `0` to `22`
+
+### Command-Line Arguments
+
+So far, all of our arguments have started with:
+
+```
+int main(void)
+{
+
+}
+```
+
+We've been collecting all of our data through in-program prompts. However if we want the user to provide data to the program before it starts running, we need to do things differently.
+
+To collect command-line arguments from the user, change the declaration of `main` to look like this:
+
+```
+int main(int argc, string argv[])
+{
+
+}
+```
+
+We are passing in two parameters - one, an integer called `argc` and the other is an array of strings called `argv`. These two arguments enable you to know what data the user provided at the command line and how much data was provided. (You can give them different names, but it's traditional to use `argument count` and `argument vector`.) (`Vector` is just another word for an `array`.)
+
+Something to remember is that if you're asking the array to store a number, e.g. `1024`, it will be stored as a **string**, not an **integer** - so you wouldn't be able to perform mathematical operations on it. There is however, a function to convert strings to integers which we'll learn later.
+
+### Magic Numbers
+
