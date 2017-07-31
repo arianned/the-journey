@@ -868,3 +868,66 @@ Something to remember is that if you're asking the array to store a number, e.g.
 
 ### Magic Numbers
 
+Directly writing constants into our code is sometimes referred to as using **magic numbers**.
+
+It's usually viewed as a bad habit to write constants into your code. Generally we want to try and avoid this. 
+
+For example:
+```
+card deal_cards(deck name)
+{
+    for (int i = 0; i < 52; i++)
+    {
+        // deal the card
+    }
+}
+```
+We have a magic number here - the 52 which can cause issues later on if we're combining this function with other files later on.
+
+One way to solve this would be to explicitly call out the deck size as 52:
+```
+card deal_cards(deck name)
+{
+    int deck_size = 52;
+    for (int i = 0; i < deck_size; i++)
+    {
+        // deal the card
+    }
+}
+```
+This fixes one problem but introduces another. Even if globally prepared, some other function could manipulate `deck_size` - which could be problematic.
+
+#### Preprocessor Directive
+
+C provides a **preprocessor directive** (also known as a **macro**) for creating symbolic constants. 
+```
+#define NAME REPLACEMENT
+```
+- At the time your program is compiled, `#define` goes through your code and replacement `NAME` with `REPLACEMENT`. 
+    - If `#include` is similar to copy/paste, then `#define` is analogus to find/replace
+- For example, if I wanted to define `pi` rather than use `3.14159265` in my code, I can do that as follows:
+```
+#define PI 3.14159265
+```
+
+The substitution isn't limited to numbers. You can use it for other things:
+```
+#define COURSE "CS50"
+```
+
+- Convention says to define your constants in CAPS. It helps make it clearer that it's a constant
+
+This particular soution is better than either of the previous ones for the `deal_cards` problem, and we use constants to do this.
+
+```
+#define DECKSIZE 52
+
+card deal_cards(deck name)
+{
+    for (int i = 0; i < DECKSIZE; i++)
+    {
+        // deal the card
+    }
+}
+```
+
