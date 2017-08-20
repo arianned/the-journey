@@ -25,7 +25,7 @@ int main(void)
         {
 
             //print initials after an indetermined number of spaces
-            if (name[i] == ' ' && name[i+1] != ' ')
+            if (name[i] == ' ' && name[i+1] != ' ' && i + 1 < n)
             printf("%c", toupper(name[i+1]));
         }
 
