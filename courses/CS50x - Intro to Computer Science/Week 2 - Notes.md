@@ -423,7 +423,7 @@ v
 
 We've been talking about `main`'s input - what about `main`'s output?
 
-When we've been typing in `int main (void)`, it still returns an output - it just does so secretly. It returns an integer. If everything works well and there's no issues, it returns a vaue of `0`. If something goes wrong, it'll return some non-zero value, which can ac as a clue to the programmer on exactly what went wrong.
+When we've been typing in `int main (void)`, it still returns an output - it just does so secretly. It returns an integer. If everything works well and there's no issues, it returns a vaue of `0`. If something goes wrong, it'll return some non-zero value, which can act as a clue to the programmer on exactly what went wrong.
 
 I can write a program that will **only** work if the user provides me with an input of exactly two arguments. 
 
@@ -477,7 +477,7 @@ Why use functions?
 
 - The first step to creating a function is to declare it. This gives the compiler a heads-up that a user-written function appears in the code.
 - Function declarations should always go atop your code, before you begin writing `main()`
-- There is a standard form that every declaration follows:
+- There is a standard format that every declaration follows:
 ```
 return-type name(argument-list);
 ```
