@@ -748,7 +748,7 @@ if (truthtable[7] == true)
 truthtable[9] = true;
 ```
 
-When declaring and initialising an array simultaneously, there is a special syntax that you can use to fill up the array with its starting values.
+When declaring and initialising an array simultaneously, there is a special syntax that you can use to fill up the array with its starting values. The instantiation syntax below does exacty the same thing in one line, that the individual element syntax take many more to do:
 
 ```
 // instantition syntax
@@ -764,6 +764,13 @@ truthtable[2] = true;
 You can also iterate over all of the elements in an array by using a loop. How do you create an array of 100 integers where every element of the array is its index? We'd want to put 0 in the first element, 1 in the second and so on.
 
 ```
+// this is my test example code - no idea if it's right
+int test[100]
+for (int i = 0; i <100; i++)
+{
+    test[i] = i;
+}
+
 ```
 
 You can tweak the instantiation syntax to not specify an array size. The compiler would automatically know to create 3 elements if you specified 3 elements after the equals sign. If you'd put 4, it would create 4:
